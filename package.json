@@ -38,10 +38,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/user/cross-platform-screen-dimensions"
+    "url": "https://github.com/Ulyssesyi/screen-dimensions.git"
   },
   "bugs": {
-    "url": "https://github.com/user/cross-platform-screen-dimensions/issues"
+    "url": "https://github.com/Ulyssesyi/screen-dimensions/issues"
   },
-  "homepage": "https://github.com/user/cross-platform-screen-dimensions#readme"
+  "homepage": "https://github.com/Ulyssesyi/screen-dimensions#readme"
 }
