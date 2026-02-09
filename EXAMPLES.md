@@ -1,9 +1,9 @@
-# Cross-Platform Screen Dimensions - Examples
+# Screen Dimensions - Examples
 
 ## Basic Usage
 
 ```javascript
-import getScreenDimensions from 'cross-platform-screen-dimensions';
+import getScreenDimensions from 'screen-dimensions';
 
 async function main() {
   try {
@@ -40,7 +40,7 @@ import getScreenDimensions, {
   ScreenInfo,
   ScreenDimensions,
   WorkAreaDimensions,
-} from 'cross-platform-screen-dimensions';
+} from 'screen-dimensions';
 
 async function typedExample(): Promise<void> {
   const screenInfo: ScreenInfo = await getScreenDimensions();
@@ -62,7 +62,7 @@ import {
   getWindowsScreenDimensions,
   getMacOSScreenDimensions,
   getLinuxScreenDimensions,
-} from 'cross-platform-screen-dimensions';
+} from 'screen-dimensions';
 
 async function platformSpecific() {
   // Only for Windows
@@ -94,7 +94,7 @@ async function platformSpecific() {
 ## Advanced Usage with Error Handling
 
 ```javascript
-import getScreenDimensions from 'cross-platform-screen-dimensions';
+import getScreenDimensions from 'screen-dimensions';
 
 async function robustScreenInfo() {
   try {
@@ -144,7 +144,7 @@ async function robustScreenInfo() {
 
 ```jsx
 import React, { useState, useEffect } from 'react';
-import getScreenDimensions from 'cross-platform-screen-dimensions';
+import getScreenDimensions from 'screen-dimensions';
 
 function ScreenInfoComponent() {
   const [screenInfo, setScreenInfo] = useState(null);
@@ -202,7 +202,7 @@ export default ScreenInfoComponent;
 When testing applications that use screen dimensions, you can mock this library:
 
 ```javascript
-// __mocks__/cross-platform-screen-dimensions.js
+// __mocks__/screen-dimensions.js
 export default jest.fn(() =>
   Promise.resolve({
     screen: { width: 1920, height: 1080 },

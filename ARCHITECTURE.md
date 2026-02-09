@@ -1,4 +1,4 @@
-# Cross-Platform Screen Dimensions Library
+# Screen Dimensions Library
 
 ## Overview
 

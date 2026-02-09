@@ -1,11 +1,11 @@
-# Cross-Platform Screen Dimensions
+# Screen Dimensions
 
 A cross-platform library to get screen dimensions and work area dimensions for Windows, macOS, and Linux.
 
 ## Installation
 
 ```bash
-npm install cross-platform-screen-dimensions
+npm install screen-dimensions
 ```
 
 ## Usage
@@ -13,7 +13,7 @@ npm install cross-platform-screen-dimensions
 ### Basic Usage (Auto-detect platform)
 
 ```javascript
-import getScreenDimensions from 'cross-platform-screen-dimensions';
+import getScreenDimensions from 'screen-dimensions';
 
 async function example() {
   try {
@@ -50,7 +50,7 @@ import {
   getWindowsScreenDimensions,
   getMacOSScreenDimensions,
   getLinuxScreenDimensions,
-} from 'cross-platform-screen-dimensions';
+} from 'screen-dimensions';
 
 // Only for Windows
 const windowsInfo = await getWindowsScreenDimensions();
@@ -69,7 +69,7 @@ import getScreenDimensions, {
   ScreenInfo,
   ScreenDimensions,
   WorkAreaDimensions,
-} from 'cross-platform-screen-dimensions';
+} from 'screen-dimensions';
 
 async function typedExample(): Promise<void> {
   const screenInfo: ScreenInfo = await getScreenDimensions();

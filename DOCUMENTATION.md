@@ -1,4 +1,4 @@
-# Cross-Platform Screen Dimensions Library
+# Screen Dimensions Library
 
 ## 概述
 
@@ -33,7 +33,7 @@ screen-dimensions/
 ### 基本使用
 
 ```javascript
-import getScreenDimensions from 'cross-platform-screen-dimensions';
+import getScreenDimensions from 'screen-dimensions';
 
 async function example() {
   try {
