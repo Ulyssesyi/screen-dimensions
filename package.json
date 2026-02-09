@@ -1,6 +1,6 @@
 {
   "name": "screen-dimensions",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Cross-platform library to get screen dimensions and work area dimensions for Windows, macOS, and Linux",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

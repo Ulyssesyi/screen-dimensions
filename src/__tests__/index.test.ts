@@ -26,7 +26,7 @@ describe('Cross-Platform Screen Dimensions', () => {
     });
   });
 
-  describe('getScreenDimensions', () => {
+  describe('default export', () => {
     it('should call Windows function on win32 platform', async () => {
       // Temporarily override process.platform
       const platformDescriptor = Object.getOwnPropertyDescriptor(
@@ -50,7 +50,7 @@ describe('Cross-Platform Screen Dimensions', () => {
 
       // Dynamically import to get fresh copy of the function with updated platform
       const module = await import('../index');
-      const result = await module.getScreenDimensions();
+      const result = await module.default();
 
       expect(getWindowsScreenInfo).toHaveBeenCalledTimes(1);
       expect(result).toEqual(mockResult);
@@ -84,7 +84,7 @@ describe('Cross-Platform Screen Dimensions', () => {
 
       // Dynamically import to get fresh copy of the function with updated platform
       const module = await import('../index');
-      const result = await module.getScreenDimensions();
+      const result = await module.default();
 
       expect(getMacOSScreenInfo).toHaveBeenCalledTimes(1);
       expect(result).toEqual(mockResult);
@@ -118,7 +118,7 @@ describe('Cross-Platform Screen Dimensions', () => {
 
       // Dynamically import to get fresh copy of the function with updated platform
       const module = await import('../index');
-      const result = await module.getScreenDimensions();
+      const result = await module.default();
 
       expect(getLinuxScreenInfo).toHaveBeenCalledTimes(1);
       expect(result).toEqual(mockResult);
@@ -143,7 +143,7 @@ describe('Cross-Platform Screen Dimensions', () => {
       // Dynamically import to get fresh copy of the function with updated platform
       const module = await import('../index');
 
-      await expect(module.getScreenDimensions()).rejects.toThrow(
+      await expect(module.default()).rejects.toThrow(
         'Unsupported platform: freebsd'
       );
 
@@ -152,94 +152,5 @@ describe('Cross-Platform Screen Dimensions', () => {
         Object.defineProperty(process, 'platform', platformDescriptor);
       }
     });
-  });
-
-  describe('explicit platform functions', () => {
-    it('should expose getWindowsScreenDimensions', async () => {
-      const mockResult: ScreenInfo = {
-        screen: { width: 1920, height: 1080 },
-        workArea: { x: 0, y: 0, width: 1920, height: 1080 },
-      };
-
-      const { getWindowsScreenInfo } = require('../windows');
-      (getWindowsScreenInfo as jest.MockedFunction<any>).mockResolvedValueOnce(
-        mockResult
-      );
-
-      const module = await import('../index');
-      const result = await module.getWindowsScreenDimensions();
-
-      expect(getWindowsScreenInfo).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockResult);
-    });
-
-    it('should expose getMacOSScreenDimensions', async () => {
-      const mockResult: ScreenInfo = {
-        screen: { width: 2560, height: 1600 },
-        workArea: { x: 0, y: 0, width: 2560, height: 1600 },
-      };
-
-      const { getMacOSScreenInfo } = require('../macos');
-      (getMacOSScreenInfo as jest.MockedFunction<any>).mockResolvedValueOnce(
-        mockResult
-      );
-
-      const module = await import('../index');
-      const result = await module.getMacOSScreenDimensions();
-
-      expect(getMacOSScreenInfo).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockResult);
-    });
-
-    it('should expose getLinuxScreenDimensions', async () => {
-      const mockResult: ScreenInfo = {
-        screen: { width: 1920, height: 1080 },
-        workArea: { x: 0, y: 0, width: 1920, height: 1080 },
-      };
-
-      const { getLinuxScreenInfo } = require('../linux');
-      (getLinuxScreenInfo as jest.MockedFunction<any>).mockResolvedValueOnce(
-        mockResult
-      );
-
-      const module = await import('../index');
-      const result = await module.getLinuxScreenDimensions();
-
-      expect(getLinuxScreenInfo).toHaveBeenCalledTimes(1);
-      expect(result).toEqual(mockResult);
-    });
-  });
-
-  it('should have default export', async () => {
-    // Temporarily override process.platform
-    const platformDescriptor = Object.getOwnPropertyDescriptor(
-      process,
-      'platform'
-    );
-    Object.defineProperty(process, 'platform', {
-      value: 'win32',
-      configurable: true,
-    });
-
-    const mockResult: ScreenInfo = {
-      screen: { width: 1920, height: 1080 },
-      workArea: { x: 0, y: 0, width: 1920, height: 1080 },
-    };
-
-    const { getWindowsScreenInfo } = require('../windows');
-    (getWindowsScreenInfo as jest.MockedFunction<any>).mockResolvedValueOnce(
-      mockResult
-    );
-
-    const module = await import('../index');
-    const result = await module.default();
-
-    expect(getWindowsScreenInfo).toHaveBeenCalledTimes(1);
-    expect(result).toEqual(mockResult);
-
-    // Restore the original descriptor
-    if (platformDescriptor) {
-      Object.defineProperty(process, 'platform', platformDescriptor);
-    }
   });
 });
